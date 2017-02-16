@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+ <h2>Blog posts!</h2>
+  {% for content in contents %}
+     <div class="content">
+     <a href="/blog/{{content.key().id()}}"class="content-title">{{content.title}}</a>
+     <pre class="content-body">{{content.content}}</pre>
+     <p class="content-author">
+    written on {{ content.created.strftime('%Y-%m-%d') }}
+    </p>
+
+    </div>
+{% endfor %}
+<br><br/>
+<footer>
+{% if prev_page %}
+<a href="/blog?page={{ prev_page }}">&lt Previous</a>
+{% endif %}
+{% if next_page %}
+<a href="/blog?page={{ next_page }}">Next &gt</a>
+{% endif %}
+</footer>
+{% endblock %}
